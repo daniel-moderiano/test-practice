@@ -1,4 +1,3 @@
-
 const calculator = {
   add: function(a, b) {
     return a + b;
@@ -20,6 +19,5 @@ const calculator = {
   },
 }
 
-console.log(calculator.divide(10, 3));
 
 export { calculator };

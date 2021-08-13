@@ -1,6 +1,7 @@
 import { capitalise } from './capitalise.js'; 
 import { reverseString } from './reverseString.js';
 import { calculator } from './calculator.js';
+import { caesar } from './caesar.js';
 
 
 // ### CAPITALISE ###
@@ -68,3 +69,20 @@ test('returns error message if user tries to divide by zero', () => {
 });
 
 
+// ### CAESAR CIPHER ###
+
+test('encrypts string that requires no alphabet wrapping', () => {
+  expect(caesar('apple', 1)).toMatch('bqqmf');
+});
+
+test('encrypts string that requires alphabet wrapping', () => {
+  expect(caesar('apple', 12)).toMatch('mbbxq');
+});
+
+test('encrypts string with shift > 26', () => {
+  expect(caesar('apple', 30)).toMatch('ettpi');
+});
+
+test('preserves punctuation, including spaces and letter case', () => {
+  expect(caesar("Apples, are tasty!", 10)).toMatch('Kzzvoc, kbo dkcdi!');
+});

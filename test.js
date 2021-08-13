@@ -2,7 +2,7 @@ import { capitalise } from './capitalise.js';
 import { reverseString } from './reverseString.js';
 import { calculator } from './calculator.js';
 import { caesar } from './caesar.js';
-import { analyse } from './array-analysis.js';
+import { analyse } from './analyse.js';
 
 
 // ### CAPITALISE ###

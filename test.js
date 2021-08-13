@@ -2,6 +2,7 @@ import { capitalise } from './capitalise.js';
 import { reverseString } from './reverseString.js';
 import { calculator } from './calculator.js';
 import { caesar } from './caesar.js';
+import { analyse } from './array-analysis.js';
 
 
 // ### CAPITALISE ###
@@ -86,3 +87,35 @@ test('encrypts string with shift > 26', () => {
 test('preserves punctuation, including spaces and letter case', () => {
   expect(caesar("Apples, are tasty!", 10)).toMatch('Kzzvoc, kbo dkcdi!');
 });
+
+
+// ### ARRAY ANALYSIS ###
+
+test('rejects empty arrays with an error message', () => {
+  expect(analyse([])).toMatch('Error: cannot analyse an empty array!');
+});
+
+test('rejects array with non-number values', () => {
+  expect(analyse([1, 2, 'a'])).toMatch('Error: array must only contain numbers!');
+});
+
+test('produces object with identical values for every entry on an array with a single element', () => {
+  expect(analyse([1])).toEqual({ average: 1, min: 1, max: 1, length: 1 });
+});
+
+test('finds correct values on array with length > 1', () => {
+  expect(analyse([2, 4, 6])).toEqual({ average: 4, min: 2, max: 6, length: 3 });
+});
+
+test('finds correct values on array with all identical values', () => {
+  expect(analyse([2, 2, 2])).toEqual({ average: 2, min: 2, max: 2, length: 3 });
+});
+
+test('finds correct values on array with some negative values, producing to 2 decimal places where required', () => {
+  expect(analyse([2, -1, 4])).toEqual({ average: 1.67, min: -1, max: 4, length: 3 });
+});
+
+test('finds correct values, producing to 2 decimal places where required', () => {
+  expect(analyse([2, 4, 4])).toEqual({ average: 3.33, min: 2, max: 4, length: 3 });
+});
+
